@@ -36,24 +36,24 @@ print (n2.next)
 
 class linkedList():
     def __init__(self):
+        #linked lists need a reference to both the first node (self.first) and the last node (self.last) so we can efficiently add items to the list
         self.first = None
         self.last = None
 
-    def add(self, otherNode):
-
-        if (len(linkedList) == 0):
-            node(otherNode)
-            self.first = otherNode
-            
-            
+    def add(self, newNode):
+        #if the list is empty when you add a node it will automatically be set to the first slot in the list
+        if (self.first is None):
+            self.first = newNode
+        
+        #if there is already a node in the first slot then this line will run setting a link between the last node and the current node.
         else:
-            node(otherNode)
+            self.last.link(newNode)
+
+        #This line of code will add the new node to the last node every time a new node is added (constantly updated last)
+        self.last = newNode
     
     def get(self, index):
-        count = 0
-
-        while (count != index):
-            count += 1
+        pass
 
 
 
