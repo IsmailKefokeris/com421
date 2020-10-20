@@ -48,4 +48,4 @@ A queue works as a FIFO (First in First Out) just like a real-world queue
 Tasks in a queue are known as "Jobs" - one of the realworld uses of a queue would be a printer queue
 
 Uses a wrap around function where the next item will start to be added to the front if the back is full. (Needs to keep track of the current indice it's on) Queues are essentially circles that wrap around and around...for instance 0, 1, 2, 3, 4, will wrap around and look like 
-0, 1, 2, 3, 4, 0, 1, 2, 3, 4,
+                                                        0, 1, 2, 3, 4, 0, 1, 2, 3, 4,
