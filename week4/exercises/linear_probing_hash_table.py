@@ -14,10 +14,29 @@ class hashtable():
             count += 1
 
         pos = hashcode % 10
+        
         if self.table[pos] is None:
             self.table[pos] = []
-
-        self.table[pos].append((key,value))
+        else:
+            if (pos > len(self.table)-1):
+                pos = 0
+                while self.table[pos] is not None:
+                    pos += 1
+                    if (pos > len(self.table)-1):
+                        return ("ERROR HASH TABLE FULL")
+                self.table[pos] = []
+            else:
+                while self.table[pos] is not None:
+                    pos += 1
+                    if (pos > len(self.table)-1):
+                        pos = 0
+                        while self.table[pos] is not None:
+                            pos += 1
+                            if (pos > len(self.table)-1):
+                                return ("ERROR HASH TABLE FULL")
+                self.table[pos] = []
+                
+        self.table[pos].append((key,value))   
 
     def get(self, key):
         hashcode = 0
@@ -35,7 +54,7 @@ class hashtable():
         else:
             while count2 != len(self.table[pos]):
 
-                if count2 == self.table[pos[count2][0]]:
+                if key == self.table[pos[count2][0]]:
                     print(self.table[pos[count2][0]])
                     print(self.table[pos[count2][1]])
 
