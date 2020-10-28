@@ -130,11 +130,34 @@ If our hash codes are truly random there wont be a need for a prime bucket size.
 
 #### Implementation details
 
+N/A
 
 
 
+## Week 5
+
+#### Trees
+
+A Tree is similar to a real tree but in reverse...The Root would be at the top and the child notes would be connected downwards from the root. A tree is a sequence of nodes.
+
+Used when we need to arrange data hierarchically we would use trees. for instance html, the page body is the root node and the child nodes would be the headers or paragraphs.. Trees can also be used to do efficient searching and sorting of data...or the use with a scene graph.. Used in graphical application (games) so 3D objects for instance a horse might have a rider object where the rider would be the decendant of the horse because he is attatched to the horse (the rider is a child node) so if the horse moves the rider will move together with its parent (the horse)
+
+#### Binary Trees
+
+Binary tree is a form of a tree where each node will have only two child nodes, a left and right node..
+This makes them useful for sorting data for instance.
+
+This is probably best illustrated by example. Imagine you want to sort the numbers 29, (20), (17), 40, 25, (18), 1. How might you do that with a binary tree?
+
+- You put the first number (i.e. 29) in the root node of the tree
+- The next number ((20)) so we compare it to the parent node since its less than (29) it will be placed as the left child node
+- Now ((17)) is less than (29) so we will go to the left node but that is occupied with (20) so we will go down another level and compare (17) with ((20)) and since ((17)) is less than ((20)) it will be added to the left node of ((20)).
+- The fourth number (40) is bigger than 29 which means it will get placed to the right child node (of 29)..
+- The next is (25) which is less than 29 so we put it on the left but (20) is there so it will compare 25 with (20) and 25 is bigger than (20) so 25 will get placed on the right as the right child node.
+-The next number is (18) which is less than 29 so it goes to the left node to (20)..its also less than (20) so it goes to the left of (20) where (17) is but (18) is bigger than (17) so we add (18) to the right node of ((17)).
+- The last is 1 so itll go all the way down to (17) and is added as the left node of (17).
 
 
-
+![Binary Trees](picture/Binarytrees.png "Binary Trees")
 
 
