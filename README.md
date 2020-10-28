@@ -157,7 +157,48 @@ This is probably best illustrated by example. Imagine you want to sort the numbe
 -The next number is (18) which is less than 29 so it goes to the left node to (20)..its also less than (20) so it goes to the left of (20) where (17) is but (18) is bigger than (17) so we add (18) to the right node of ((17)).
 - The last is 1 so itll go all the way down to (17) and is added as the left node of (17).
 
+#### Exercise
+On paper, create a binary tree containing these numbers in order:
+
+                                                    8934 9 843 1 83 23 389
 
 ![Binary Trees](picture/Binarytrees.png "Binary Trees")
 
+#### Retrieving data in sorted order
+
+Start at the root node.
+Descend to the left child node.
+If it has child nodes of its own:
+    first descend its left child node and print out the value within;
+    print out the value within this node;
+    then descend its right child node and print out the value within.
+If it does not have child nodes of its own, simply display the value within.
+
+Repeat the process with the right child node of the root.
+
+What do we do if the left child node's own left child node also has child nodes? We simply repeat the process and keep going until we finally hit a node with no child nodes of its own.
+
+![Binary Trees](picture/treeexample.png "Binary Trees")
+
+The 29 node has two child nodes, 20 and 40, so we descend to 20 first.
+The 20 node has two child nodes, 17 and 25, so we descend to 17 first.
+The 17 node has two child nodes, 1 and 18, so we descend to 1 first.
+1 has no child nodes, so we just print out 1 and ascend to its parent (the node containing 17)
+Having dealt with the left child of the node containing 17, we print out the value itself (17) first, then descend to the right node (18)
+The 18 node has no child nodes, so we just print out 18
+We then ascend back to the 17 node. The 18 node was the right node of the 17 node, so we are done processing this branch of the tree. So we go back up again to the 20 node.
+
+We have dealt with the left branch of the 20 node, but not the right. This means we first print out the value, 20 and then descend the right node.
+
+The right node of 20 contains a value, 25, but no child nodes of its own so we just print out the value (25)
+We then ascend back to the parent, 20, as we are done with this branch.
+We have also covered all branches of 20, so we ascend back up to the root node, 29.
+We have dealt with the left branch of the 29 node, but not the right. This means we first print out the value, 29 and then descend the right node.
+
+The right node of 29 contains a value, 40, but no child nodes of its own so we just print out the value (40)
+We then ascend back to the parent, 29, as we are done with this branch.
+
+We have now covered the left branch, the value, and the right branch of the root node. This means we are done with the tree. If you track back the order in which the values were printed, you'll find they are in order:
+
+                                                            1 17 18 20 25 29 40
 
