@@ -202,3 +202,35 @@ We have now covered the left branch, the value, and the right branch of the root
 
                                                             1 17 18 20 25 29 40
 
+
+#### Recursion
+
+Recursion is the process of a function calling itself over and over again until a condition is met...for instanec this is some code to print out the numbers 1 to 10 using recursion.
+
+```python
+def recursive_print (value, max_value):
+    print(value)
+    if value < max_value:
+        value += 1
+        recursive_print(value, max_value)
+
+recursive_print (1, 10)
+```
+
+#### Using recursion on a binary tree (Algorithm)
+
+- Starts at the Root node:
+        Descends left branch (recursive function)
+        Print the value in the node.
+        Descend the right branch (recursive function)
+- For each node we get to (for example the immediate child nodes of the root node), perform the first three steps again:
+        Descend the left branch, if it exists
+        Print the value in the node.
+        Descend the right branch, if it exists
+
+
+
+
+
+
+
