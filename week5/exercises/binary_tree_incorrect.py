@@ -22,13 +22,21 @@ class TreeNode:
           
         while value.left is not None:
             value = value.left
+            if value.left is None:
+                print(value.value)
+            TreeNode.printT(self, value)
+            
+
+        while value.right is not None:
+            value = value.right
+            if value.right is None:
+                print(value.value)
             TreeNode.printT(self, value)
 
-        if value.left is None:
-            return value
+        return value.value
 
 
-class BinaryTree():
+class BinaryTree(): #Does Not Work YET!!
 
     def __init__(self,Rvalue):
         self.root = TreeNode(Rvalue)

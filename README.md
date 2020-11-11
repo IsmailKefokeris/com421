@@ -229,6 +229,71 @@ recursive_print (1, 10)
         Descend the right branch, if it exists
 
 
+## Week 7
+
+#### Algorithm efficiency: the "Big O" notation
+
+In algorithms we need to measure how comples an algorithm is (efficiency)..Complexity can be measured in many ways such as performance (time taken) or the usage of memory... The standards for measuring algorithm complexity we use The Big O notion... This expresses complexity in relation to some property (the data we are dealing with) "n"... n is often the size of data (the amount of data) for exampel a list n would be the amount of items in the list (The longer the list the slower or more complex the algorithm would be )... With algorithm efficiency we have to consider worst case senarios
+
+Big O notation is expressed in terms of this property "n"...For Example:
+    O(1): if an algorithm is O(1) it means that its complexity is independent of n. Calculating the memory address of the index of an array     would be an example of an O(1) operation because it is always given by the equation:
+    
+```python
+memory_address = start_memory_address + index * bytes_used_by_one_item
+```
+
+    Clearly the time taken to evaluate this equation does not depend on the size of the list, which is the property n in this case. Even if the list is very large, and the index is very large, we can quickly calculate the item's address using the simple equation above. O(1) algorithms are thus highly efficient… but not many algorithms are O(1)!
+
+    O(n):  If an algorithm is O(n) it simply means that the complexity depends on the value of "n"(Directly or linearly)...If n was increased by 2 the complexity will also increase by another 2...for example linked lists is an O(n) algorithm because we will have to manually follow the links to retrieve the item in the list with a specific index...we cannot rely on memory addresses...
+
+The Worst-case scenario is simply that we assume the index would not be found until the end of the list where n is the number of items in the list..
+
+    O(n^2): (^Indicates a power) when na algorithm is O(n^2) then it means the time takne or memory used will be influenced by the square of the number of items...So if the number of the items doubles then the time taken will increase around four times or if the number is increased by 10 this means the time taken will be increased by 100 times
+
+Algorithms in which we have an outer and inner loop which will loop through the array twice would be an O(n^2) algorithm..the outer loop will be run "n" times and the inner loop will be run "n" times...For example an outer and inner loop. A function do_something() is performed n^2 times (16 times in the example, as n is 4). If n is changed to 5, then the operation will be performed 25 (5^2) times.
+
+```python
+n = 4
+for i in range (n):
+    for j in range (n):
+        do_something(i, j)
+```
+As can be seen this is not very efficient..
+
+Big O notation is used to classify algorithms...so we have O(n^2) but we dont have and never will O(n^2) + 1 for complexity...Even if the time taken would be n^2 + 1 we wouldnt show it as that but instead as O(n^2).
+
+Any compelxity equation that has n^2 in the equation means they can be approximated (simplified) simply to O(n^2)...
+
+
+The diagram below shows how complexity increases with increasing n for different classes of Big O complexity:
+
+    n is along the x (horizontal) axis, while the complexity is along the y (vertical) axis;
+    green is O(n);
+    red is O(n^2);
+    blue is O(log n); to be discussed below;
+
+    magenta is the quadratic equation 0.5*n^2 + 0.5n. This shows that the quadratic form is exhibited, and the shape of the graph, with a rapid increase with the rate of increase getting bigger with larger values of n is very similar to n^2. (This is known as a parabolic graph). So, even if the complexity is not exactly O(n^2), the behaviour of the graph for increasing n is essentially the same as O(n^2).
+
+
+![Binary Trees](picture\download.png "Binary Trees") This is known as a Parabolic Graph...
+
+
+
+    O(log n): When algorithms are O(log n) O is related to the log of n...Logarithm is the inverse operation of a power...A log of a number (relative to a particular base, such as base 10 or base 2) will give you the power the base has to be raised to to equal that number...so if b to the power of p is x then log(b)x = p....(log explained)
+
+
+    b^p = x ----> log(b) x = p
+
+From this we can see that the O(log n) operation is far more efficient because we can increase n significantly but the consumed time or memory will not increase too significantly... For example if we were to use it on a list of 256 (2^8) items it will only take twice as long as a list of 16 (2*4) ...compared with that of a O(n) algorithm which will take 16 times longer because 16 x 16 is 256....
+
+
+#### Sorting Algorithms...
+
+##### Bubble Sort
+
+
+
+
 
 
 
