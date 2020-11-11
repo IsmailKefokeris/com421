@@ -275,7 +275,7 @@ The diagram below shows how complexity increases with increasing n for different
     magenta is the quadratic equation 0.5*n^2 + 0.5n. This shows that the quadratic form is exhibited, and the shape of the graph, with a rapid increase with the rate of increase getting bigger with larger values of n is very similar to n^2. (This is known as a parabolic graph). So, even if the complexity is not exactly O(n^2), the behaviour of the graph for increasing n is essentially the same as O(n^2).
 
 
-![Binary Trees](picture\download.png "Binary Trees") This is known as a Parabolic Graph...
+![Binary Trees - NickWhitelegg](picture\download.png "Binary Trees") This is known as a Parabolic Graph...
 
 
 
@@ -291,11 +291,51 @@ From this we can see that the O(log n) operation is far more efficient because w
 
 ##### Bubble Sort
 
+Bubble sort is a simple algorithm but not very efficient....You go through a list of values and consider pairs at a time..
+
+![Bubble Sorts - NickWhitelegg](picture\bubble-sort.png "Bubble Sorts")
 
 
 
 
+##### Swapping variables over
 
+to swap variables you would need to create a temp variable...
+
+```python
+tempVar = a # Stores the Original value of A
+a = b # A contains original value of B
+b = tempVar # B takes the original value of A
+
+# we cannot just...
+
+a = b
+b = a
+```
+
+#### Selection Sort
+
+Selection Sort is a different type of sorting algorithm and is conceptually simple but (relatively) inefficient...It does have its advantages over bubble sort for example the number of swap operations is minimised (It is O(n) rather than O(n^2))....
+
+![Diagram by Brian Dupee sourced from sorting-algorithms.com](picture\selection_sort.png "selection_sort")
+
+Selection sort involves going through the list and for each member of the list finding the lowest member of the list and swaping with current if current is greater than that value...we go through the list and compare the current with the lower one...
+
+When swapping numbers swapping may not be computationally expensive however if the two values are more complex objects which takes time to initialise then the fact that we need to create a temp varuable can mean a swap will be expensive...in cases like this selection sort is particularly favoured over bubble sort.
+
+
+#### Insertion Sort
+
+Another type of simple sort which has the complexity of O(n^2) in most cases but can also occasionally be a O(n)....
+
+![insertion_sort - NickWhitelegg](picture\insertion_sort.png "insertion_sort")
+
+WE start with the first value...then we move to the second value, we then check if there are any members in the sorted part of the list(the part before the devider (the red box)) are less...we compare the current item with the list before the current item that is greater than the current item....
+
+A great advantage of insertion sort is that if you do know that some of the data is already sorted you are able to avoid the use of an innerloop...if the divider value is greater than the one immediately to the left then we wont need to use an innerloop instead filter it through an If statement...
+
+            (Note that we can perform a useful "trick" here which can prevent us having to do the inner loop at all. If the last value of the sorted part of the list - which will be the value immediately to the left (i.e one index below) the "divider", is less than the "divider", then we know that the "divider" is already in its correct position. This is because the sorted part of the list is sorted, and the highest value within the sorted part will be immediately to the left of the "divider". So if the "divider" is greater than this value, we do not to move it. Thus, we do not need an inner loop.) 
+                                                --- Said better than i explained probably...
 
 
 
