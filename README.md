@@ -275,7 +275,7 @@ The diagram below shows how complexity increases with increasing n for different
     magenta is the quadratic equation 0.5*n^2 + 0.5n. This shows that the quadratic form is exhibited, and the shape of the graph, with a rapid increase with the rate of increase getting bigger with larger values of n is very similar to n^2. (This is known as a parabolic graph). So, even if the complexity is not exactly O(n^2), the behaviour of the graph for increasing n is essentially the same as O(n^2).
 
 
-![Binary Trees - NickWhitelegg](picture\download.png "Binary Trees") This is known as a Parabolic Graph...
+![Parabolic Graph - NickWhitelegg](picture\download.png "Parabolic Graph") This is known as a Parabolic Graph...
 
 
 
@@ -338,4 +338,33 @@ A great advantage of insertion sort is that if you do know that some of the data
                                                 --- Said better than i explained probably...
 
 
+#### Week 8 - Efficient Searching Algorithms
 
+WE want to avoid brute force algorithms when searching...a brute force algorithm doesnt really implement intelligence...For instance if we search through a list and compare each item in the list with the item we want it would be very slow and be known as a brute force algorithm...
+
+another example of brute force is trying to find a factor of a number...for example the factore of 24 is 2, 3, 4, 6, 8, and 12 a brute force way would be to loop through all numbers and dividing those numbers to see if they give us an integer meaning its a factor...Again testing every single integer...
+
+##### Binary Search
+
+Binary search is a more efficient way of searching compared to a brute force search (called linear search)...It is a O(log n) complexity...which we say last week it is better than O(n)...Binary Searches work by repearedly guessing a position to index in a list to find the item(data) required...To use Binary Search we must have the list sorted using a sorting algorithm first....This can be used in things such as searching for a record in a large list of people in a system of sort...(student records system) its likely that searching will have to be done many many times but by contrast the data would only have to be sorted once when the daata is first created or at worst when a new record is added to the data which is less likely to happen....
+
+Binary Search is known as divide and conquer algorithm...
+Here is an example of binary search. We have an array with 100 members containing names sorted in alphabetical order, and we are searching for "Smith, Tim".
+
+First we select the midpoint of the list, this could be the member with index 49 or 50 doesnt really matter which for a 100 member list... (in python)
+```python
+math.floor((start + end) / 2) # need to import math
+
+```
+
+start is the start part of the list we are searching... and end si the end part of the list (99 assuming its a 100 list)....(note math.floor takes a floating point number and rounds it down...)...if the length is an even number (100) it will give us the index of the item immediately before the midpoint (49) while if it is an odd number (101) it will give us the exact midpoint (because indices start from 0 and math.floor(101/2 is math.floor(50.5))) which is 50...exactly halfway between 0 and 100
+
+SO once we select our midpoint in this case 49....So, say we find "Jones, Jane" at position 49 in our example. We know we need to look within the range 50-99 because "Smith, Tim" is after "Jones, Jane" in the alphabet. So we repeat the divide-and-conquer operation. We find the midpoint of 50 and 99 (74) and look at the value there. It's "Nodd, Nigel".
+
+We repeat the process. "Smith, Tim" is after "Nodd, Nigel" in the alphabet so we know we have to search the portion of the list after 74. So we find the midpoint of 75 and 99, which is 87. We might get "Trott, Tina" at this position, so now we need to look at the portion before 87 (as "Smith, Tim" is before "Trott, Tina" in the alphabet). So we have to search within the portion75-86. We choose the midpoint, 80, and now found "Raven, Roger".
+
+Our area of search is cut down now to 81-86. We pick 83 and find "Smith, Alice", i.e just before "Smith, Tim" alphabetically. We then only have three list positions to search - 84 to 86. So we pick the midpoint 85. We find "Smith, Simon". We now only have one possibility - 86 - and looking at item 86 we finally find what we want, "Smith, Tim".
+
+The diagram below shows the process. Our search term (Smith, Tim) is shown using a red circle.
+
+![Binary Search - NickWhitelegg](https://nwcourses.github.io/COM421/images/binary_search.png "insertion_sort")
