@@ -1,3 +1,4 @@
+import collections
 
 class TreeNode:
     def __init__(self, value):
@@ -53,7 +54,22 @@ class BinaryTree():
         print(starting_node.value)
         if starting_node.right is not None:
             self.printTree(starting_node.right)
+    
+    def search(self, value):
+        queue = collections.deque([])
+        root = self.root
+        queue.append(root)
 
+        while value != queue[0]:
+            x = queue.popleft()
+
+            if x == value:
+                return x
+            else:
+                if x.left != None:
+                    queue.append(x.left)
+                    if x.right != None:
+                        queue.append(x.right)
 
 
 binary = BinaryTree(100)
@@ -62,4 +78,4 @@ binary.insert(50)
 binary.insert(45)
 binary.insert(60)
 binary.insert(49)
-binary.printTree(binary.root)
+binary.search(60)
