@@ -36,7 +36,7 @@ class TreeNode:
         return value.value
 
 
-class BinaryTree(): #Does Not Work YET!!
+class BinaryTree(): 
 
     def __init__(self,Rvalue):
         self.root = TreeNode(Rvalue)
@@ -46,10 +46,14 @@ class BinaryTree(): #Does Not Work YET!!
         root = self.root
         TreeNode.insert(self, value, root)
 
-    def printTree(self):
-        
-        root = self.root
-        TreeNode.printT(self, root)
+    def printTree(self, starting_node):
+
+        if starting_node.left is not None:
+            self.printTree(starting_node.left)
+        print(starting_node.value)
+        if starting_node.right is not None:
+            self.printTree(starting_node.right)
+
 
 
 binary = BinaryTree(100)
@@ -58,3 +62,4 @@ binary.insert(50)
 binary.insert(45)
 binary.insert(60)
 binary.insert(49)
+binary.printTree(binary.root)
