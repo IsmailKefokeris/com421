@@ -46,11 +46,34 @@ class poi():
             if (name in key):
                 name = name + str(count)
         
+        
         self.poi[name] = [name, establishment, description, address]
 
 
     def search(self, name):
-        pass
+        count = 0
+        temp = []
+        for key in self.poi:
+            if (name in key):
+                entries = self.poi[key]
+                count += 1
+                temp.append([key, entries[3]])
+        
+        print ("We have found {} matching results together with their post codes".format(count))
+        print ("")
+        if count > 1:
+            print (temp)
+            name = str(input("Please re enter the correct name for the establishment you want...."))
+            poi.search(self, name)
+        elif count == 1:
+            print(self.poi[name])
+        else:
+            print ("ERROR.....")
+            print ("Item Not Found Try Again...")
+            print ("")
+            print ("-------------------------------------------------")
+                
+                
 
     def display(self):
         pass
