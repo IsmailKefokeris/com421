@@ -4,23 +4,37 @@ class poi():
         is_running = True
 
         while (is_running):
+            print ("-------------------------------------------------")
             print ("What would you like to do today?: ")
             print ("[A] Add a new POI")
             print ("[B] Search for a specific POI")
             print ("[C] List all POI")
             print ("[D] Delete a specific POI")
             print ("[Q] Quit....")
+            print ("-------------------------------------------------")
 
             action = input()
 
             if ("a" in action.lower()):
-                print ("")
-                name = str(input("What is the name of this POI: "))
-                establishment = str(input("What type of establishment is it: "))
-                description = str(input("Give me a short description: "))
-                address = str(input("What is the address: "))
+                running = True
+                while (running):
+                    print ("")
+                    name = str(input("What is the name of this POI: "))
+                    establishment = str(input("What type of establishment is it: "))
+                    description = str(input("Give me a short description: "))
+                    address = str(input("What is the post-code: "))
+                    print ("-------------------------------------------------")
+                    print ("Are you happy with the values entered?")
+                    print ("[A] Yes")
+                    print ("[B] No")
+                    action = str(input())
 
-                poi.add(self,name,establishment,description,address)
+                    if ("a" in action.lower()):
+                        poi.add(self,name,establishment,description,address)
+                        running = False
+                    elif ("b" in action.lower()):
+                        print ("Resetting.....")
+                        print ("-------------------------------------------------")
 
             elif ("b" in action.lower()):
                 print ("")
@@ -36,18 +50,21 @@ class poi():
                 print ("Quitting.....")
                 break
 
-
     
     def add(self, name, establishment, description, address):
-        
+        actual_key = name
         count = 0
+        edit = False
         for key in self.poi:
             count += 1
-            if (name in key):
-                name = name + str(count)
+            if (actual_key in key):
+                edit = True
+                actual_key = actual_key + str(count)
+
+        if(edit is False):
+            actual_key = actual_key + str(count)
         
-        
-        self.poi[name] = [name, establishment, description, address]
+        self.poi[actual_key] = [name, establishment, description, address]
 
 
     def search(self, name):
