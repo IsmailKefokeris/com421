@@ -368,3 +368,61 @@ Our area of search is cut down now to 81-86. We pick 83 and find "Smith, Alice",
 The diagram below shows the process. Our search term (Smith, Tim) is shown using a red circle.
 
 ![Binary Search - NickWhitelegg](https://nwcourses.github.io/COM421/images/binary_search.png "insertion_sort")
+
+
+#### Assignment Info
+
+Should not search by name in question 2 must be something else - Give each point a unique key for example
+
+question 6 - use queues for enquiries..
+
+
+#### Week 9 - More Advanced Sorting Algorithms
+
+These algorithms use recursion... (Quick sort and Merge Sort)
+
+Quicksort - Works by recursively partitioning the list into two sections or partitions...the sides of an element are known as a pivot.
+A pivot is the central item...
+
+We first pick the pivot (often the last value or the first or the middle - this is arbitrary)
+Then we partition the values (into two partitions) into those lower than the pivot and those higher
+We then repeat it recursively with each section (lower than pivot and higher than pivot) to finally sort them
+
+To work out which element is less than or greater than the pivot we will be using the Hoare Partitioning Algorithm...
+
+##### The Hoare partitioning algorithm
+
+The hoare Algorithm was developed from Tony Hoare, it works by having two "fingers" pointing to the start of the list and the end of the list...we will first move the first "finger" which is referenced by the variable i forwards and the second "finger" referenced by the variable j backwards....until i points to somethign greater than or equal to the pivot and j points to something less than or equal to the pivot.
+
+![Hoare Algorithm Quicksort - NickWhitelegg](https://nwcourses.github.io/COM421/images/qsort2.png "Quicksort")
+
+Afterwards the quicksort function will then... get a new pivot by calling the hoare partitioning algorithm,..recursively calls quicksort on the section left of the pivot and right of the pivot...
+
+Pseudo Code:
+
+```python
+function hoare_partition(data, start, end)
+    Let i = start
+    Let j = end
+    Let pivot = midpoint of list # this is arbitrary
+
+    While true # this will loop forever
+
+        Increase i until we find a number equal to or greater than number at pivot position
+        Decrease j until we find a number equal to or less than number at pivot position
+
+        # At this point, the numbers pointed to by i and j will be in the 'wrong' 
+        # part of the list, so swap them, unless i and j are equal or have crossed over, 
+        # in which case we have finished this run
+
+        If i and j haven't crossed over yet, swap the numbers
+        If i is less than j
+            Swap the numbers
+        else
+            return j  # i and j have crossed over. Use j as the new pivot - could also use i
+```
+
+apart from this we will need a master function...this function will take in as parameters the list, the partition start index, and the partition end index.... first thing we check in master function is if end is > than start index...otherwise 
+            uses Hoare partitioning to partition the list and find a pivot
+            recursively call the "master" function passing in the partition before the pivot
+            recursively call the "master" function passing in the partition after the pivot
