@@ -42,7 +42,7 @@ class poi():
                 poi.search(self,name)
 
             elif ("c" in action.lower()):
-                pass
+                poi.display(self)
             elif ("d" in action.lower()):
                 pass
             elif ("q" in action.lower()):
@@ -93,7 +93,12 @@ class poi():
                 
 
     def display(self):
-        pass
+        empty_list = []
+
+        for key in self.poi:
+            empty_list.append(key)
+        
+        print(empty_list)
 
 
 
