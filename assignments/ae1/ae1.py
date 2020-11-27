@@ -1,3 +1,5 @@
+import quicksort_strings2 as quicksort
+
 class poi():
     def __init__(self):
         self.poi = {}
@@ -97,8 +99,11 @@ class poi():
 
         for key in self.poi:
             empty_list.append(key)
-        
-        print(empty_list)
+
+        end = len(empty_list) - 1
+        start = end - end
+        quicksort.quicksort(empty_list, start, end)
+        print (empty_list)
 
 
 
