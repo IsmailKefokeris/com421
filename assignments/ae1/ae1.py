@@ -41,12 +41,17 @@ class poi():
             elif ("b" in action.lower()):
                 print ("")
                 name = str(input("What is the name of the POI: "))
-                poi.search(self,name)
+                search = poi.search(self,name)
+                print(search[1])
 
             elif ("c" in action.lower()):
                 poi.display(self)
             elif ("d" in action.lower()):
-                pass
+                print ("")
+                name = str(input("What is the name of the POI you are going to remove: "))
+                search = poi.search(self, name)
+                poi.delete(self, search[0])
+
             elif ("q" in action.lower()):
                 print ("")
                 print ("Quitting.....")
@@ -84,8 +89,9 @@ class poi():
             print (temp)
             name = str(input("Please re enter the correct name for the establishment you want...."))
             poi.search(self, name)
+            return [name, self.poi[name]]
         elif count == 1:
-            print(self.poi[name])
+            return self.poi[name]
         else:
             print ("ERROR.....")
             print ("Item Not Found Try Again...")
@@ -104,6 +110,37 @@ class poi():
         start = end - end
         quicksort.quicksort(empty_list, start, end)
         print (empty_list)
+        print ("-------------------------------------------------")
+        print ("Would you like to select a POI?")
+        print ("[A] Yes")
+        print ("[B] No")
+        print ("-------------------------------------------------")
+        action = str(input())
+
+        if ("a" in action.lower()):
+            print ("-------------------------------------------------")
+            action = str(input("Enter the name of the POI: "))
+            poi.search(self,action)
+
+        elif ("b" in action.lower()):
+            print ("Going back to main menu.....")
+            print ("-------------------------------------------------")
+    
+    def delete(self, name):
+        print("Are you sure you want to delete the POI: {}?".format(name))
+        print ("[A] Yes")
+        print ("[B] No")
+        print ("-------------------------------------------------")
+        action = str(input(" : "))
+
+        if ("a" in action):
+            del self.poi[name]
+        else:
+            print ("Returning to Main menu.....")
+            print ("")
+            print ("")
+
+
 
 
 
