@@ -426,3 +426,73 @@ apart from this we will need a master function...this function will take in as p
             uses Hoare partitioning to partition the list and find a pivot
             recursively call the "master" function passing in the partition before the pivot
             recursively call the "master" function passing in the partition after the pivot
+
+#### Week 10 Path-Finding
+
+Key thing is we use a datastructure known as a graph in pathfinding... a graph is a datastructure which shows the connection between a particular point called nodes...A node is a point of interest(could be a city town village pub or restauranet or what ever even road junctions) connections between nodes(lines) are known as edges, in graphs we show nodes and lines between the nodes, nodes store the info in them as class this includes the name of the place and all the edges leading from the singular node...The edge class stores starting node and the ending node aswell as some info about the edge such as the distance. 
+
+
+![graph for pathfinding - NickWhitelegg](https://nwcourses.github.io/COM421/images/railgraph.png "graph")
+
+
+More generally in graphs edges may store somethign called weight(which is known as cost) the cost for going on that route, for example if calculating a route by bike you might want to avoid steep hills which is a feature and if it is steep then the weight for the edge will be increased (shortest route is 4km but has a steep hill so the weight would be distance multiply the cost (maybe 1.5) so itll be 5.5 longer and there may be a better route)
+
+This is all known as a topology
+
+##### Dijkstra's Algorithm
+
+This algorithm is used to find a route from one node to another....This is a way of efficiently routing from one node to another, we start at a starting node(london) and we gradually explore node by node until we reach the end node(munich) This works  by keeping track of something called an open list, a list of nodes we have explored but havent considered, Consider means we are on that node and looking at all edges from that node (explore) so while we havent considered it we wont know what connects to it.
+
+first step explore neighbours, brussels and paris so we add the two to the open list,
+
+we store the distances from london in the node, we know that the edge from london to brussels is 370 so we store it into the brussels node which is shortest so far. we do the same with paris and we remove london from the open list, 
+
+we then select the node from the open list with the lowest distance to explore (in this case brussels at 370) we will now consider brussels and expand out to Amsterdam and Cologne and we add them both to the open list and store 581 to the nodes which is (london to brussels plus brussels to the next city in this case the same distance regardless of amsterdam and Cologne)
+
+We dont go to paris from brussels because the distance will be longer than just going from london to paris rather than london to brussels then to paris.
+
+Note amsterdan and cologne have a longer distance than from london to paris, so we will now have to explore paris, notice nodes we have considered are white and ones we still need to are yellow.
+
+neighbours of Paris would be brussels (which we can ignore ) and go to the others which are frankfurt(1033) and stuttgart(1085) which are the values added all up and they are added to the open list now. we now have considered paris so paris is off the open list
+
+we will now consider amstardam because again shortest distance, amstardam has no new neighbours (because of brussels and cologne) and we dont need to move because the route to cologne via amsterdam is longer than to brussels...so nothing is needed to happen here.
+
+we are now on Cologne which has one new neighbour which is frankfurt and it combines its distances together(771) its already on the open list so we wont need to visit it again the distance from london to frankfurt via cologne is shorter than paris to frankfurt and since its less we can update the frankfurt distance from 1033 to 771, when we explore a node we set its parents(links between current node and previous node) to the preceeding node (parent of frankfurt was originally Paris but now itll be set to Cologne because distance is shorter)
+
+since frankfurt is shortest itll be the next current node, it has two neighbours stuttgart(978) and munich, the same happens with stuttgart that happened with frankfurt meaning we can update it but we also find the route which was needed to munich (1164) Even though we have found munich it is still possible there is a shorter route (even though we know there isnt the computer doesnt)
+
+So finally we explore stuttgart and check distances, if it is shorter it would update but it isnt (because it is 978 + 221 = 1199) so that is where it ends.
+
+![Dijkstra's Algorithm - NickWhitelegg](https://nwcourses.github.io/COM421/images/dijkstra2.png "Dijkstra's Algorithm")
+
+Nodes considered/ visited can have a boolean message inside saying it has already been explored and doesnt need to go again
+
+WE can use deque for the list to get the correct order, with deque we start with the end and move backwards to the start.
+
+##### Implementing a priority queue in Python
+
+A priority queue allows for items to be added and sorted based on a numerical value given to the item, this is perfect because our value can be distance
+
+to use it we need to import the module "heapq". priority queues are implemented using a specific type of sorted tree which is known as a heap...Heap is a tree where every parent node will have a value which is less than or equal to any of its children...A simple example of creating a priority queue and then removing items from it...Note we use heappush() to add to the queue and heappop() to remove from the front of it
+
+```python
+
+import heapq
+from heapq import heappush, heappop
+
+# Create an empty list. This will be converted to a heap.
+h = []
+
+# Add tuples containing a numerical value and another item of data (place name here) to the priority queue. If tuples are added, the queue will be prioritised using the first item in the tuple.
+heappush (h, (461, 'Paris'))
+heappush (h, (370, 'Brussels'))
+heappush (h, (1164, 'Munich'))
+heappush (h, (771, 'Frankfurt'))
+
+# Remove each item one by one from the priority queue until it's empty.
+while len(h) > 0:
+    hp = heappop(h)
+    print(hp)
+
+```
+
