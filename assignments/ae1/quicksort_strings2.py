@@ -29,3 +29,12 @@ def quicksort(data, start, end):
         quicksort(data, pivot+1, end)
     
     return data
+
+
+
+if __name__ == "__main__":
+    unsorted = [47,36,14,21,91,18,17,82,84,6,73]
+
+    quicksort(unsorted,0,10)
+
+    print(unsorted)
