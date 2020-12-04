@@ -1,7 +1,7 @@
 import quicksort_strings2 as quicksort
 from collections import deque
 
-class poi():
+class Poi():
     def __init__(self):
         self.poi = {}
         self.enquire = {}
@@ -35,7 +35,7 @@ class poi():
                     action = str(input())
 
                     if ("a" in action.lower()):
-                        poi.add(self,name,establishment,description,address)
+                        Poi.add(self,name,establishment,description,address)
                         running = False
                     elif ("b" in action.lower()):
                         print ("Resetting.....")
@@ -44,16 +44,16 @@ class poi():
             elif ("b" in action.lower()):
                 print ("")
                 name = str(input("What is the name of the POI: "))
-                search = poi.search(self,name)
+                search = Poi.search(self,name)
                 print(search)
 
             elif ("c" in action.lower()):
-                poi.display(self)
+                Poi.display(self)
             elif ("d" in action.lower()):
                 print ("")
                 name = str(input("What is the name of the POI you are going to remove: "))
-                search = poi.search(self, name)
-                poi.delete(self, search[0])
+                search = Poi.search(self, name)
+                Poi.delete(self, search[0])
             
             elif ("e" in action.lower()):
                 stored_pois = []
@@ -102,7 +102,7 @@ class poi():
         if count > 1:
             print (temp)
             name = str(input("Please re enter the correct name for the establishment you want...."))
-            poi.search(self, name)
+            Poi.search(self, name)
             return [name, self.poi[name]]
         elif count == 1:
             print ("-------------------------------------------------")
@@ -112,7 +112,7 @@ class poi():
             print ("[B] No")
             action = str(input(" :"))
             if (action.lower() == "a"):
-                poi.enquiries(self,temp[0][0],False)
+                Poi.enquiries(self,temp[0][0],False)
                 return self.poi[temp[0][0]]
             elif (action.lower() == "b"):
                 return self.poi[temp[0][0]]
@@ -146,7 +146,7 @@ class poi():
         if ("a" in action.lower()):
             print ("-------------------------------------------------")
             action = str(input("Enter the name of the POI: "))
-            poi.search(self,action)
+            Poi.search(self,action)
 
         elif ("b" in action.lower()):
             print ("Going back to main menu.....")
@@ -170,9 +170,13 @@ class poi():
         employee = employee
         
         if (employee is False):
-            question = input("What would you like to ask? ")
+            print ("What would you like to ask?")
+            question = input(" :")
 
             if (name in self.enquire):
+                print ("-------------------------------------------------")
+                print ("Saving Question....")
+                print (" ")
                 self.enquire[name].append(question)
             else:
                 self.enquire[name] = deque()
@@ -190,13 +194,9 @@ class poi():
                 except:
                     print ("No Questions Available..")
                     return
-        
-        
-
-
 
 
 def run():
-    poi()
+    Poi()
 
 run()
