@@ -186,7 +186,7 @@ class Poi():
                 try:
                     question = self.enquire[name].popleft()
                     print (question)
-                    answer = input("Enter your answer here: ")
+                    _ = input("Enter your answer here: ")
                     print ("-------------------------------------------------")
                     print ("Thank you for your response....")
                     print ("-------------------------------------------------")
