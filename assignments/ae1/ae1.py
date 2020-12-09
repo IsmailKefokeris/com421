@@ -5,9 +5,8 @@ class Poi():
     def __init__(self):
         self.poi = {}
         self.enquire = {}
-        is_running = True
 
-        while (is_running):
+        while True:
             print ("-------------------------------------------------")
             print ("What would you like to do today?: ")
             print ("[A] Add a new POI")

@@ -496,4 +496,71 @@ while len(h) > 0:
 
 ```
 
+#### Week 11 A* algorithm
+
+A key problem with Dijkstra algorithm is that we explore every node available, clearly can end up being quite slow, this algorithm can be enhanced if we were to put more priority on nodes closer to  the destination which will help minimise the number of nodes visited. for example if we are trying to go from London to Nice with the nodes around London being, Birmingham Brussels and Paris. Paris would be closer to Nice than the other two so could be prioritised such that we are more likely to select Paris after leaving London.
+
+A* will give us the ability to do this, A* uses something called an F score which calculates the distance between the origin node and current node (same calculation as Dijkstra) called G score plus an estimate of the distance between the current node and the destination called H score...This estimation is known as Heuristic hence H
+
+F score - Score of a Node 
+G score - distance from origin to current node (Dijkstra)
+H score - estimate between the current node and destination
+#                      F = G + H
+
+Manhatan distance - places based on horizontal and vertical movement only
+
+
+![A* Graph Example - NickWhitelegg](https://nwcourses.github.io/COM421/images/astar.png)
+
+## Iteration 1
+London is the start point, we would calculate F score for birmingham Brussels and Paris which is the G plus H
+Birmingham: G=191 + H=1188 ... 1379
+Brussels: G=370 + H=823 ... 1193
+Paris: G=461 + H=686 ... 1147
+This makes Paris the "winner"
+
+open list after visiting London
+[Paris, Brussels, Birmingham]
+
+## Iteration 2
+Now at Paris we need to visit the three unvisited Nodes: Brussels, Bordeaux or Lyon....F score again
+Brussels: ... 1193 (we have already calculated this and the route via Paris is not shorter, so we do not update)
+Lyon: G=461+465=926, H=299 ... 1225
+Bordeaux: G=461+584=1045, H=637 ... 1682
+
+Open list now is
+[Brussels, Lyon, Birmingham, Bordeaux ]
+
+
+
+## Iteration 3
+Open list after Brussels
+[Lyon, Birmingham, Cologne, Amsterdam, Bordeaux ]
+
+## Iteration 4
+the next lowest F after brussels is Lyon so that is picked, Nice is the only unexplored neighbour
+Nice: G=461+465+472 = 1398. H=0 ... 1398 (heuristic is 0 as we are at destination)
+
+Open list:
+[Birmingham, Nice, Cologne, Amsterdam, Bordeaux ]
+## Iteration 5
+Note that Nice, by this path, has a higher F score than Birmingham at 1379. Expressing this in a straightforward way, the road distance between London and Birmingham plus the straight-line distance between Birmingham and Nice is less than the road distance from London to Nice via Paris and Lyon. So we still have to explore Birmingham, just in case there is a road direct from Birmingham to Nice via a straight-line path.
+
+… We find no such route exists from Birmingham to Nice, as Birmingham has no unexplored neighbours, so can move on.
+
+Open list after visiting Birmingham:
+
+[Nice, Cologne, Amsterdam, Bordeaux ]
+## Iteration 6
+We have Nice, Cologne, Amsterdam and Bordeaux remaining on the open list. The F score of Nice is lower than any of the others, and Nice is the destination, so we are done.
+
+
+
+
+
+
+
+
+
+
 
