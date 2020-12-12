@@ -13,9 +13,10 @@ def binarysearch(list,high,low,item):
     return -1
 
 if __name__ == "__main__":
-    data = [i*i for i in range(1,100)]
+    data = ["a","b","c","d","e","f","g"]
+    
 
-    result = binarysearch(data,99,0,81)
+    result = binarysearch(data,6,0,"e")
 
     if result != -1:
         print("Your item was at index {}".format(result))

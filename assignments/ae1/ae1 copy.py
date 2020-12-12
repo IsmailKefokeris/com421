@@ -1,5 +1,6 @@
 import quicksort_strings2 as quicksort
 from collections import deque
+from binary_search_exercise1 import binarysearch
 
 class Poi():
     def __init__(self):
@@ -42,19 +43,8 @@ class Poi():
 
             elif ("b" in action.lower()):
                 print ("")
-                print ("Do you know the exact name of the POI?")
-                print ("[A] Yes")
-                print ("[B] No")
-                action = str(input())
-                if action.lower() == "b":
-                    name = str(input("What is the name of the POI: "))
-                    search = Poi.search(self,name)
-                    print(search)
-                elif action.lower() == "a":
-                    name = str(input("What is the EXACT name of the POI Stored: "))
-                    Poi.specific_search(self,name)
-                else:
-                    print ("Errorr.....")
+                name = str(input("What is the name of the POI: "))
+                Poi.search(self,name)
 
             elif ("c" in action.lower()):
                 Poi.display(self)
@@ -62,7 +52,7 @@ class Poi():
                 print ("")
                 name = str(input("What is the name of the POI you are going to remove: "))
                 search = Poi.search(self, name)
-                Poi.delete(self, search[0])
+                Poi.delete(self, search)
             
             elif ("e" in action.lower()):
                 stored_pois = []
@@ -97,63 +87,25 @@ class Poi():
         self.poi[actual_key] = [name, establishment, description, address]
 
 
-    def search(self, name):
-        count = 0
-        temp = []
-        for key in self.poi:
-            if (name in key):
-                entries = self.poi[key]
-                count += 1
-                temp.append([key, entries[3]])
-        
-        print ("We have found {} matching results together with their post codes".format(count))
-        print ("")
-        if count > 1:
-            print (temp)
-            name = str(input("Please re enter the correct name for the establishment you want...."))
-            Poi.search(self, name)
-            return [name, self.poi[name]]
-        elif count == 1:
-            print ("-------------------------------------------------")
-            print ("Results: {}".format(self.poi[temp[0][0]]))
-            print ("Would you like to make any enquiries on the selected establishment?")
-            print ("[A] Yes")
-            print ("[B] No")
-            action = str(input(" :"))
-            if (action.lower() == "a"):
-                Poi.enquiries(self,temp[0][0],False)
-                return self.poi[temp[0][0]]
-            elif (action.lower() == "b"):
-                return self.poi[temp[0][0]]
-            else:
-                print ("Sorry something went wrong...")
-                return self.poi[temp[0][0]]
-        else:
-            print ("ERROR.....")
-            print ("Item Not Found Try Again...")
-            print ("")
-            print ("-------------------------------------------------")
-
     def specific_search(self, name):
+        empty_list = []
 
-        if name in self.poi:
-            print ("-------------------------------------------------")
-            print (f"Results: {self.poi[name]}")
-            print ("Would you like to make any enquiries on the selected establishment?")
-            print ("[A] Yes")
-            print ("[B] No")
-            action = str(input(" :"))
-            if (action.lower() == "a"):
-                Poi.enquiries(self,name,False)
-                return name
-            elif (action.lower() == "b"):
-                return name
-            else:
-                print ("Sorry something went wrong...")
-                return name   
+        for key in self.poi:
+            empty_list.append(key)
+
+        end = len(empty_list) - 1
+        start = end - end
+        quicksort.quicksort(empty_list, start, end)
+        result = binarysearch(empty_list,end,start,name)
+
+        if result != -1:
+            print (f"Values from {empty_list[result]}")
+            print(self.poi[empty_list[result]])
+            return empty_list[result]
         else:
-            print ("-------------------------------------------------")
-            print("Name Either Incorrect or doesnt Exist....")         
+            print("Name Either Incorrect or doesnt Exist....")
+
+                
                 
     def display(self):
         empty_list = []

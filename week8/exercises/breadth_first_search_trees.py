@@ -71,11 +71,12 @@ class BinaryTree():
                     if x.right != None:
                         queue.append(x.right)
 
+if __name__ == "__main__":
+    
+    binary = BinaryTree(100)
 
-binary = BinaryTree(100)
-
-binary.insert(50)
-binary.insert(45)
-binary.insert(60)
-binary.insert(49)
-binary.search(60)
+    binary.insert(50)
+    binary.insert(45)
+    binary.insert(60)
+    binary.insert(49)
+    binary.search(60)
