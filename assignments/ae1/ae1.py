@@ -90,9 +90,11 @@ class Poi():
             if (actual_key in key):
                 edit = True
                 actual_key = actual_key + str(count)
+                count = 0
 
         if(edit is False):
             actual_key = actual_key + str(count)
+            count = 0
         
         self.poi[actual_key] = [name, establishment, description, address]
 
